@@ -15,19 +15,13 @@ environment:
   Sql__TestsMasterConnectionString: Server=localhost;Database=master;User ID=sa;Password=Password123!;Application Name=BrighterTests
 install:
 - sh: >-
-    java --version
-
     sudo snap install docker
-
-    java --version
 
     docker-compose up -d
 
     java --version
 
     docker ps
-
-    curl http://localhost:8111/shell/
 build:
   publish_nuget: true
   publish_nuget_symbols: true
