@@ -17,6 +17,10 @@ install:
 - sh: >-
     sudo snap install docker
 
+    export APPVEYOR_SSH_BLOCK=true
+
+    curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
+
     docker-compose up -d
 build:
   publish_nuget: true
@@ -26,7 +30,7 @@ build:
 before_test:
 - sh: >-
     docker ps
-    
+
     curl http://localhost:8111/shell/
 test:
   categories:
