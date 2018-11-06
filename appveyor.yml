@@ -1,7 +1,7 @@
 version: 1.0.{build}
 image: Ubuntu1804
 configuration: Release
-stack: jdk 12, docker
+stack: jdk 12
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
@@ -15,6 +15,7 @@ environment:
   Sql__TestsMasterConnectionString: Server=localhost;Database=master;User ID=sa;Password=Password123!;Application Name=BrighterTests
 install:
 - sh: >-
+    sudo snap install docker 
     docker-compose up -d
 build:
   publish_nuget: true
