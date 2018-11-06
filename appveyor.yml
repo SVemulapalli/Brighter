@@ -15,7 +15,7 @@ environment:
   Sql__TestsMasterConnectionString: Server=localhost;Database=master;User ID=sa;Password=Password123!;Application Name=BrighterTests
 install:
 - sh: >-
-    sudo snap install docker 
+    sudo snap install docker
     docker-compose up -d
 build:
   publish_nuget: true
