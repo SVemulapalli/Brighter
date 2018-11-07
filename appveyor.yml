@@ -13,7 +13,6 @@ dotnet_csproj:
 environment:
   Sql__TestsBrighterConnectionString: Server=localhost;Database=BrighterTests;User ID=sa;Password=Password123!;Application Name=BrighterTests
   Sql__TestsMasterConnectionString: Server=localhost;Database=master;User ID=sa;Password=Password123!;Application Name=BrighterTests
-  APPVEYOR_SSH_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAtTaIppMWEGJdRV02W3kj6GBklBdkgS/UbqCngo+3OMxzK9/SbAWyodEjVCstrKIjPOngwlsybRLs3W1lZUofRrzmoSh9qePtQr3pLk+dpZ16gN2ivXRKV8BGQy54UUuHT2Dxd2qLZkz8pcsyO7NBrd/C9ap3gXooP2L1P0CZquVQH2toWXfl5NNbZ5ygQxd5v1rEPRjikGn55LQXTkT3Tp6HYO89nmHCK1Gu60uST+9aaSN00wFV9H5EH7IGOpNcN/m3SrR/17MIY0Js4GLISmCFSkRJ8fC6WM2IHpuenvLoHPVd5D36LG+WrHedIa2OySe/PXGsjYg4WjrhGRt1kQ== toby.henderson@huddle.com
 install:
 - sh: >-
     sudo snap install docker
@@ -33,10 +32,6 @@ before_test:
     docker ps
  
     curl http://localhost:8000/shell/
-
-    export APPVEYOR_SSH_BLOCK=true
-
-    curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
 test:
   categories:
     except:
