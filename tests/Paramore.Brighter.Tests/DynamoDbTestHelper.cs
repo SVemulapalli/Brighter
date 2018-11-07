@@ -51,7 +51,6 @@ namespace Paramore.Brighter.Tests
             var clientConfig = new AmazonDynamoDBConfig
             {
                 ServiceURL = "http://localhost:8000",
-                RegionEndpoint = RegionEndpoint.EUWest2
             };
 
             Client = new AmazonDynamoDBClient(credentials, clientConfig);
