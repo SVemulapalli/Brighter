@@ -25,9 +25,11 @@ THE SOFTWARE. */
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.Model;
+using Amazon.Runtime;
 using Paramore.Brighter.CommandStore.DynamoDB;
 using Paramore.Brighter.MessageStore.DynamoDB;
 
@@ -43,12 +45,17 @@ namespace Paramore.Brighter.Tests
 
         public DynamoDbTestHelper()
         {
+
+            var credentials = new BasicAWSCredentials("FakeAccessKey", "FakeSecretKey");
+            
             var clientConfig = new AmazonDynamoDBConfig
             {
-                ServiceURL = "http://localhost:8000"
+                ServiceURL = "http://localhost:8000",
+                RegionEndpoint = RegionEndpoint.EUWest2
             };
 
-            Client = new AmazonDynamoDBClient(clientConfig);
+            Client = new AmazonDynamoDBClient(credentials, clientConfig);
+            
             var tableName = $"test_{Guid.NewGuid()}";            
 
             DynamoDbContext = new DynamoDBContext(Client);
